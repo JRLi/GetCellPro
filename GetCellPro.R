@@ -6,7 +6,6 @@
 #' @param cel_typ A vector of cell types to be considered.
 #' @param min_cell_number Minimum number of cells for a cell type to be considered (default is 10).
 #' @param max_dis Maximum distance for proximity calculation (default is 100).
-#' @param cell_lim Maximum diameter for considering cells (default is 30).
 #' 
 #' @return A data frame with proximity metrics.
 #' 
@@ -22,11 +21,11 @@
 #' 
 #' @export
 #' 
-GetCellPro <- function(pos.List, cel.typ, min.cell.number = 10, max.dis=100, cell.lim = 30){
-  min.cell.number = min.cell.number 		## if a cell type has <10 cells, don't set it as the reference cell type in a sample
-  maxs = max.dis*10  ## the max size x 10
+GetCellPro <- function(pos.List, cel.typ, min.cell.number = 10, max.dis=100){
+  min.cell.number = min.cell.number
+  maxs = max.dis*10
   cel.pair.name = outer(cel.typ, cel.typ, paste, sep="__")
-  cel.pair.name = as.vector(t(cel.pair.name))		##  A__B --> A is reference cell type
+  cel.pair.name = as.vector(t(cel.pair.name))
   cel.typ.num = length(cel.typ)
   nnk = 1
   mymat = matrix(0, cel.typ.num*cel.typ.num, length(pos.List))
@@ -37,7 +36,6 @@ GetCellPro <- function(pos.List, cel.typ, min.cell.number = 10, max.dis=100, cel
     cat("\r", ff)
     data = myList[[ff]]
     data = data[data$cel.typ%in%cel.typ,]
-    se = which(data$dist.y<=cell.lim)
     data = data[se,]
     mylab = data$cel.typ
     xx = table(mylab)
