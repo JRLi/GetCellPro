@@ -2,7 +2,7 @@
 
 ## Overview
 
-`GetCellPro.R` calculates cell proximity metrics for given cell types and positions. This script is useful for analyzing cell-cell interactions in spatial transcriptomics data.
+`GetCellPro.R` calculates cell proximity metrics for given cell types and positions. This script is useful for analyzing cell-cell interactions in IMC data.
 
 ## Installation
 
